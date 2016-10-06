@@ -1,6 +1,6 @@
-var React = require('react');
+const React = require('react');
 
-var Home = React.createClass({
+const Home = React.createClass({
   render() {
     return (
       <h1>'Hello World!'</h1>
