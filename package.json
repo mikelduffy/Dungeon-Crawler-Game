@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "eslint": "eslint app/",
-    "test": "eslint app/ && babel-node app/test/"
+    "test": "eslint app/ && babel-node app/spec/"
   },
   "author": "Mikel Duffy",
   "license": "MIT",
