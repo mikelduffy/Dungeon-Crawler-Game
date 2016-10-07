@@ -1,10 +1,5 @@
-var styles = {
-  transparentBg: {
-    background: 'transparent'
-  },
-  space: {
-    marginTop: '25px',
-  }
-}
+const styles = {
+// Custom styles here
+};
 
 module.exports = styles;
