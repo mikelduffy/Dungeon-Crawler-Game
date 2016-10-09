@@ -2,11 +2,11 @@
   "name": "dungeoncrawlergame",
   "version": "1.0.0",
   "description": "A Roguelike Dungeon Crawler Game with React, Redux, and RxJS",
-  "main": "app/index.js",
+  "main": "src/app/index.js",
   "scripts": {
     "start": "webpack-dev-server",
     "eslint": "eslint app/",
-    "test": "eslint app/ && babel-node app/spec/"
+    "test": "eslint app/ && babel-node src/spec/"
   },
   "author": "Mikel Duffy",
   "license": "MIT",

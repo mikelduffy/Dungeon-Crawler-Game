@@ -2,14 +2,14 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: path.join(__dirname, '/app/index.html'),
+  template: path.join(__dirname, '/src/index.html'),
   filename: 'index.html',
   inject: 'body',
 });
 
 module.exports = {
   entry: [
-    './app/index.jsx',
+    './src/index.js',
   ],
   output: {
     path: path.join(__dirname, '/dist'),
@@ -22,15 +22,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         query: {
-          presets: ['es2015'],
-        },
-      },
-      {
-        test: /.jsx?$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-        query: {
-          presets: ['es2015', 'react'],
+          presets: ['es2015', 'stage-0', 'react'],
         },
       },
       {
