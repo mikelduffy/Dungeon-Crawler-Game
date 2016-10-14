@@ -1,4 +1,4 @@
-// Imports
+import playerImgAsset from '../assets/player.svg';
 
 const initialState = {
   currentHealth: 100,
@@ -7,7 +7,15 @@ const initialState = {
   experience: 0,
   level: 0,
   levels: [10, 21, 33, 45, 57, 70, 85, 100],
-  position: [],
+  position: 12,
+  visibleMap: [
+    0, 0, 0, 0, 0,
+    0, 1, 1, 1, 1,
+    0, 1, 8, 2, 2,
+    0, 1, 2, 2, 0,
+    0, 1, 0, 2, 0,
+  ],
+  image: playerImgAsset,
 };
 
 export default function(state = initialState, {type, payload}) {

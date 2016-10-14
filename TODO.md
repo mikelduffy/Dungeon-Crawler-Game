@@ -1,0 +1,16 @@
+TODO
+----
+- implement uservision to be the visible subset of the map
+- implement canvas to show only the uservision with a circular mask around it
+- design layers 2-5
+- implement randomly populating enemies and items
+- implement movements
+- implement fighting enemies
+- implement enemy death
+- implement picking up weapon
+- implement picking up heart
+- implement walking down stairs to next layer
+- implement walking up stairs to previous layer
+- implement congratulations modal after killing boss
+- implement death modal
+- implement zoomed/masked view of current layer

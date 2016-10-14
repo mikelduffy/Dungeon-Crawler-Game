@@ -6,7 +6,6 @@ import styles from '../styles/Stats';
 const Stats = ({
   currentHealth,
   maxHealth,
-  damage,
   experience,
   levels,
   level,
@@ -17,9 +16,6 @@ const Stats = ({
         <div style={styles.statContainer}>
           <div style={styles.stat}>
             {currentHealth} / {maxHealth} &nbsp; <div style={styles.health} />
-          </div>
-          <div style={styles.stat}>
-            {damage} &nbsp; <div style={styles.damage} />
           </div>
           <div style={styles.stat}>
             {experience} / {levels[level]} XP
@@ -38,7 +34,6 @@ const Stats = ({
 Stats.propTypes = {
   currentHealth: PropTypes.number.isRequired,
   maxHealth: PropTypes.number.isRequired,
-  damage: PropTypes.number.isRequired,
   experience: PropTypes.number.isRequired,
   level: PropTypes.number.isRequired,
   levels: PropTypes.arrayOf(React.PropTypes.number).isRequired,
@@ -48,7 +43,6 @@ Stats.propTypes = {
 const mapStateToProps = state => ({
   currentHealth: state.Character.currentHealth,
   maxHealth: state.Character.maxHealth,
-  damage: state.Character.damage,
   experience: state.Character.experience,
   level: state.Character.level,
   levels: state.Character.levels,

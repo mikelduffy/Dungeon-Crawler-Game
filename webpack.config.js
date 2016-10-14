@@ -33,6 +33,10 @@ module.exports = {
         test: /\.svg$/,
         loader: 'file-loader',
       },
+      {
+        test: /\.png$/,
+        loader: 'file-loader',
+      },
     ],
   },
   resolve: {

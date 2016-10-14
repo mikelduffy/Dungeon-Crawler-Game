@@ -75,9 +75,27 @@ const styles = {
     backgroundColor: 'white',
     border: '1px solid black',
   },
+  mask: {
+    // margin: 'auto',
+    // WebkitMaskImage: '-webkit-gradient(linear, left 90%, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)))',
+    clip: 'circle(60px at center)',
+    backgroundColor: '#222222',
+  },
   gameBoard: {
-    margin: 'auto',
+    margin: 'auto', // Position the div with this style
   },
 };
 
 export default styles;
+
+// const stylesMap = {
+//   0: styles.wall,
+//   1: styles.path,
+//   2: styles.stairsdown,
+//   3: styles.stairsup,
+//   4: styles.health,
+//   5: styles.weapon,
+//   6: styles.enemy,
+//   7: styles.boss,
+//   8: styles.character,
+// };
