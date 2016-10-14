@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Grid} from 'react-bootstrap';
-import Header from './Header';
-import Stats from '../stats/Stats';
-import GameBoard from '../gameboard/GameBoard';
+import Header from '../components/Header';
+import Stats from '../components/Stats';
+import GameBoard from '../containers/GameBoard';
+import Footer from '../components/Footer';
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         <Header />
         <Stats />
         <GameBoard />
+        <Footer />
       </Grid>
     );
   }

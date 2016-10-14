@@ -1,8 +1,8 @@
 import {combineReducers} from 'redux';
-import Character from '../gameboard/character/CharacterReducer';
-import Enemies from '../gameboard/enemies/EnemiesReducer';
-import Items from '../gameboard/items/ItemsReducer';
-import Layers from '../gameboard/layers/LayersReducer';
+import Character from '../reducers/Character';
+import Enemies from '../reducers/Enemies';
+import Items from '../reducers/Items';
+import Layers from '../reducers/Layers';
 
 const rootReducer = function() {
   return combineReducers({
