@@ -1,10 +1,8 @@
 TODO
 ----
-- implement uservision to be the visible subset of the map
-- implement canvas to show only the uservision with a circular mask around it
 - design layers 2-5
 - implement randomly populating enemies and items
-- implement movements
+- implement movements (arrow keys and clicking neighbor cells)
 - implement fighting enemies
 - implement enemy death
 - implement picking up weapon
@@ -14,3 +12,5 @@ TODO
 - implement congratulations modal after killing boss
 - implement death modal
 - implement zoomed/masked view of current layer
+- ? Add reset button ?
+- ? Add character/item/enemy images or 2d pixel art ?

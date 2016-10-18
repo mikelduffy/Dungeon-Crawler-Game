@@ -1,19 +1,36 @@
 import React, {PropTypes, Component} from 'react';
 import {connect} from 'react-redux';
 import {Row} from 'react-bootstrap';
-// import styles from '../styles/Gameboard';
+import {playerMovement} from '../actions/GameBoard';
+import styles from '../styles/Gameboard';
 
 class GameBoard extends Component {
   componentDidMount() {
     this.drawVisibleMap();
+    document.addEventListener('keydown', this.onInputKeydown, false);
+  }
+
+  onInputKeydown = (event) => {
+    const keycode = event.keyCode;
+    switch (keycode) {
+      case 37: console.log('LEFT');
+        break;
+      case 38: console.log('UP');
+        break;
+      case 39: console.log('RIGHT');
+        break;
+      case 40: console.log('DOWN');
+        break;
+      default: console.log('SOMEKEY');
+    }
   }
 
   drawVisibleMap() {
     const context = this.gameBoardCanvas.getContext('2d');
     const styleMap = {
-      0: 'black',
-      1: 'grey',
-      2: 'white',
+      9: 'black',
+      0: 'grey',
+      1: 'white',
       8: 'green',
     };
     context.arc(150, 150, 150, 0, 2 * Math.PI);
@@ -25,44 +42,19 @@ class GameBoard extends Component {
         const x = col * 60;
         context.fillStyle = styleMap[this.props.visibleMap[counter]];
         context.fillRect(x, y, 60, 60);
-        // console.log(`x:${x}, y:${y}, counter:${counter}`);
         counter += 1;
       }
     }
-
-    // Drawing image directly (not working)
-    // const player = new Image();
-    // player.src = this.props.playerImage;
-    // player.width = 60;
-    // player.height = 60;
-    // player.onLoad = function() {
-    //   context.drawImage(player, 60, 0);
-    // };
-    // Patterning image on a rectangle (not working)
-    // img.src = this.props.characterImage;
-    // const pat = context.createPattern(this.imgplayer, 'no-repeat');
-    // context.rect(0, 0, 60, 60);
-    // context.fillStyle = pat;
-    // context.fill();
   }
 
   render() {
     return (
       <Row>
-        { /* <img
-          role="presentation"
-          width="60"
-          height="60"
-          src={this.props.playerImage}
-        /> */ }
         <canvas
           ref={(c) => { this.gameBoardCanvas = c; }}
           width="300"
           height="300"
-          style={{
-            display: 'block',
-            margin: 'auto',
-          }}
+          style={styles.centerBlock}
         />
       </Row>
     );
@@ -71,14 +63,21 @@ class GameBoard extends Component {
 
 GameBoard.propTypes = {
   visibleMap: PropTypes.arrayOf(React.PropTypes.number).isRequired,
-  playerImage: PropTypes.string.isRequired,
+  keyPress: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  visibleMap: state.Character.visibleMap,
-  playerImage: state.Character.image,
+  visibleMap: state.GameBoard.character.visibleMap,
+});
+
+const mapDispatchToProps = dispatch => ({
+  keyPress: (event) => {
+    dispatch(playerMovement(event));
+  },
+  // Click...
 });
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(GameBoard);

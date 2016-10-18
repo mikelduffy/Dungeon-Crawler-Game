@@ -11,24 +11,24 @@ const Stats = ({
   level,
   layer,
 }) => (
-    <Row>
-      <Well bsSize="small">
-        <div style={styles.statContainer}>
-          <div style={styles.stat}>
-            {currentHealth} / {maxHealth} &nbsp; <div style={styles.health} />
-          </div>
-          <div style={styles.stat}>
-            {experience} / {levels[level]} XP
-          </div>
-          <div style={styles.stat}>
-            Level: {level}
-          </div>
-          <div style={styles.stat}>
-            Layer: {layer}
-          </div>
+  <Row>
+    <Well bsSize="small">
+      <div style={styles.statContainer}>
+        <div style={styles.stat}>
+          {currentHealth} / {maxHealth} &nbsp; <div style={styles.health} />
         </div>
-      </Well>
-    </Row>
+        <div style={styles.stat}>
+          {experience} / {levels[level]} XP
+        </div>
+        <div style={styles.stat}>
+          Level: {level}
+        </div>
+        <div style={styles.stat}>
+          Layer: {layer}
+        </div>
+      </div>
+    </Well>
+  </Row>
 );
 
 Stats.propTypes = {
@@ -41,12 +41,12 @@ Stats.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  currentHealth: state.Character.currentHealth,
-  maxHealth: state.Character.maxHealth,
-  experience: state.Character.experience,
-  level: state.Character.level,
-  levels: state.Character.levels,
-  layer: state.Layers.number,
+  currentHealth: state.GameBoard.character.currentHealth,
+  maxHealth: state.GameBoard.character.maxHealth,
+  experience: state.GameBoard.character.experience,
+  level: state.GameBoard.character.level,
+  levels: state.GameBoard.character.levels,
+  layer: state.GameBoard.layer.number,
 });
 
 export default connect(

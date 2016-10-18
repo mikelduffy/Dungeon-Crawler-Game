@@ -1,5 +1,5 @@
-import sword from '../assets/sword.svg';
-import heart from '../assets/heart.svg';
+// import sword from '../assets/sword.svg';
+// import heart from '../assets/heart.svg';
 
 const styles = {
   stat: {
@@ -13,14 +13,14 @@ const styles = {
     float: 'right',
     width: '20px',
     height: '20px',
-    backgroundImage: `url(${heart})`,
+    // backgroundImage: `url(${heart})`,
     backgroundSize: '20px 20px',
   },
   damage: {
     float: 'right',
     width: '20px',
     height: '20px',
-    backgroundImage: `url(${sword})`,
+    // backgroundImage: `url(${sword})`,
     backgroundSize: '20px 20px',
   },
 };
