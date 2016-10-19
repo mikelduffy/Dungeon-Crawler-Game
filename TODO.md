@@ -1,7 +1,5 @@
 TODO
 ----
-- design layers 2-5
-- implement randomly populating enemies and items
 - implement movements (arrow keys and clicking neighbor cells)
 - implement fighting enemies
 - implement enemy death

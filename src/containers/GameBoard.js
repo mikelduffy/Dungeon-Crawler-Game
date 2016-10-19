@@ -32,6 +32,10 @@ class GameBoard extends Component {
       0: 'grey',
       1: 'white',
       8: 'green',
+      2: 'red',
+      3: 'blue',
+      4: 'purple',
+      5: 'black',
     };
     context.arc(150, 150, 150, 0, 2 * Math.PI);
     context.clip();
