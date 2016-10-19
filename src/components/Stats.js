@@ -15,7 +15,7 @@ const Stats = ({
     <Well bsSize="small">
       <div style={styles.statContainer}>
         <div style={styles.stat}>
-          {currentHealth} / {maxHealth} &nbsp; <div style={styles.health} />
+          {currentHealth} / {maxHealth} &nbsp; <span style={{color: 'red'}}>&#10084;</span>
         </div>
         <div style={styles.stat}>
           {experience} / {levels[level]} XP
