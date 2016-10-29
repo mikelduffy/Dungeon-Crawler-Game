@@ -1,7 +1,7 @@
 import {createStore} from 'redux';
-import makeRootReducer from './Reducers';
+import GameBoard from '../reducers/GameBoard';
 
 export default createStore(
-  makeRootReducer(),
+  GameBoard,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

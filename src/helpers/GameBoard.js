@@ -33,12 +33,12 @@ export const generateVisibleMap = (map, position, size) => {
   return visibleMap;
 };
 
-export const layers = [
+const layers = [
   {
     size: [11, 9],
     map: [
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 8, 1, 1, 1, 1, 1, 1, 1, 1, 0,
+      0, 1, 1, 1, 8, 1, 1, 1, 1, 1, 0,
       0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0,
       0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0,
       0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0,
@@ -178,7 +178,7 @@ const getRandomNumber = (min, max) => {
   return Math.floor(Math.random() * ((Max - 0) + 1)) + Min;
 };
 
-export const populateMaps = () => {
+const generatePopulateMaps = () => {
   const openSpaceIndexes = [];
   for (let i = 0; i < layers[0].map.length; i += 1) {
     if (layers[0].map[i] === 1) {
@@ -204,4 +204,37 @@ export const populateMaps = () => {
     }
   }
   return layers;
+};
+
+export const initialPopulatedMaps = generatePopulateMaps();
+
+export const handleMovement = (keyCode, map, size) => {
+  const currentPosition = map.indexOf(8);
+  const leftSpace = map[currentPosition - 1];
+  const rightSpace = map[currentPosition + 1];
+  const updatedMap = [...map];
+  let updatedVisibleMap;
+  switch (keyCode) {
+    case 37:
+      if (leftSpace === 1 || leftSpace === 2 || leftSpace === 3) {
+        updatedMap[currentPosition - 1] = 8;
+        updatedMap[currentPosition] = 1;
+      }
+      updatedVisibleMap = generateVisibleMap(updatedMap, updatedMap.indexOf(8), size);
+      return [updatedMap, updatedMap.indexOf(8), updatedVisibleMap];
+    case 38:
+      // console.log('up');
+      break;
+    case 40:
+      // console.log('down');
+      break;
+    case 39:
+      if (rightSpace === 1 || rightSpace === 2 || rightSpace === 3) {
+        updatedMap[currentPosition + 1] = 8;
+        updatedMap[currentPosition] = 1;
+      }
+      updatedVisibleMap = generateVisibleMap(updatedMap, updatedMap.indexOf(8), size);
+      return [updatedMap, updatedMap.indexOf(8), updatedVisibleMap];
+    default:
+  }
 };

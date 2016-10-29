@@ -1,57 +1,54 @@
-import {PLAYER_MOVEMENT, MovementDirections} from '../actions/GameBoard';
+import {PLAYER_MOVEMENT} from '../actions/GameBoard';
 import * as helpers from '../helpers/GameBoard';
 
+const initialMap = helpers.initialPopulatedMaps[0];
+
 const initialState = {
-  layer: {
-    map: helpers.layers[0].map,
-    size: helpers.layers[0].size,
-    number: 1,
-  },
-  character: {
-    currentHealth: 100,
-    maxHealth: 100,
-    baseDamage: 10,
-    experience: 0,
-    level: 0,
-    levels: [10, 21, 33, 45, 57, 70, 85, 100],
-    position: 12,
-    visibleMap: helpers.generateVisibleMap(helpers.layers[0].map, 12, helpers.layers[0].size),
-  },
-  enemies: {
-    normal: {
-      count: 1,
-      locations: [],
-      health: 10,
-      baseDamage: 3,
-    },
-  },
-  boss: {
-    location: [],
-    health: 10,
-    baseDamage: 3,
-  },
-  items: {
-    health: {
-      count: 3,
-      locations: [],
-      value: 10,
-      experience: 3,
-    },
-    weapon: {
-      count: 1,
-      locations: [],
-      baseDamage: 10,
-    },
-  },
+  layerMap: initialMap.map,
+  layerSize: initialMap.size,
+  layerNumber: 1,
+  characterCurrentHealth: 100,
+  characterMaxHealth: 100,
+  characterBaseDamage: 10,
+  characterExperience: 0,
+  characterLevel: 0,
+  characterLevels: [10, 21, 33, 45, 57, 70, 85, 100],
+  characterPosition: initialMap.map.indexOf(8),
+  characterVisibleMap: helpers.generateVisibleMap(initialMap.map, initialMap.map.indexOf(8), initialMap.size),
+  enemyCount: 1,
+  enemyLocations: [],
+  enemyHealth: 10,
+  enemyBaseDamage: 3,
+  bossLocation: [],
+  bossHealth: 10,
+  bossBaseDamage: 3,
+  healthItemCount: 3,
+  healthItemLocations: [],
+  healthItemValue: 10,
+  weaponItemCount: 1,
+  weaponItemLocations: [],
+  weaponItemBaseDamage: 10,
 };
+
+function updateObject(oldObject, newValues) {
+  return Object.assign({}, oldObject, newValues);
+}
+
+function playerMovement(state, action) {
+  const updatedMap = helpers.handleMovement(action.event, state.layerMap, state.layerSize);
+  return updateObject(state, {
+    layerMap: updatedMap[0],
+    characterPosition: updatedMap[1],
+    characterVisibleMap: updatedMap[2],
+  });
+}
 
 function gameBoardReducer(state = initialState, action) {
   switch (action.type) {
-    case PLAYER_MOVEMENT:
-      // console.log(action.event.keyCode);
-      return {
-        ...state,
-      };
+    case PLAYER_MOVEMENT: {
+      // console.log(playerMovement(state, action));
+      return playerMovement(state, action);
+    }
     default:
       return state;
   }

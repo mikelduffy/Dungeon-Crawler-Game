@@ -11,31 +11,32 @@ class GameBoard extends Component {
   }
 
   onInputKeydown = (event) => {
-    const keycode = event.keyCode;
-    switch (keycode) {
-      case 37: console.log('LEFT');
-        break;
-      case 38: console.log('UP');
-        break;
-      case 39: console.log('RIGHT');
-        break;
-      case 40: console.log('DOWN');
-        break;
-      default: console.log('SOMEKEY');
-    }
+    const keyCode = event.keyCode;
+    this.props.keyPress(keyCode);
+    // switch (keycode) {
+    //   case 37: console.log('LEFT');
+    //     break;
+    //   case 38: console.log('UP');
+    //     break;
+    //   case 39: console.log('RIGHT');
+    //     break;
+    //   case 40: console.log('DOWN');
+    //     break;
+    //   default: console.log('SOMEKEY');
+    // }
   }
 
   drawVisibleMap() {
     const context = this.gameBoardCanvas.getContext('2d');
     const styleMap = {
-      9: 'black',
-      0: 'grey',
-      1: 'white',
-      8: 'green',
-      2: 'red',
-      3: 'blue',
-      4: 'purple',
-      5: 'black',
+      9: 'black', // Out of map
+      0: 'grey', // Walls
+      1: 'white', // Paths
+      8: 'green', // Character
+      2: 'red', // Health
+      3: 'blue', // Weapon
+      4: 'purple', // Enemy
+      5: 'black', // Boss (in map)
     };
     context.arc(150, 150, 150, 0, 2 * Math.PI);
     context.clip();
@@ -49,6 +50,9 @@ class GameBoard extends Component {
         counter += 1;
       }
     }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    this.drawVisibleMap();
   }
 
   render() {
@@ -71,14 +75,13 @@ GameBoard.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  visibleMap: state.GameBoard.character.visibleMap,
+  visibleMap: state.characterVisibleMap,
 });
 
 const mapDispatchToProps = dispatch => ({
   keyPress: (event) => {
     dispatch(playerMovement(event));
   },
-  // Click...
 });
 
 export default connect(

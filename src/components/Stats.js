@@ -41,12 +41,12 @@ Stats.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  currentHealth: state.GameBoard.character.currentHealth,
-  maxHealth: state.GameBoard.character.maxHealth,
-  experience: state.GameBoard.character.experience,
-  level: state.GameBoard.character.level,
-  levels: state.GameBoard.character.levels,
-  layer: state.GameBoard.layer.number,
+  currentHealth: state.characterCurrentHealth,
+  maxHealth: state.characterMaxHealth,
+  experience: state.characterExperience,
+  level: state.characterLevel,
+  levels: state.characterLevels,
+  layer: state.layerNumber,
 });
 
 export default connect(
