@@ -38,7 +38,7 @@ const layers = [
     size: [11, 9],
     map: [
       0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-      0, 1, 1, 1, 8, 1, 1, 1, 1, 1, 0,
+      0, 8, 1, 1, 1, 1, 1, 1, 1, 1, 0,
       0, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0,
       0, 0, 1, 0, 1, 1, 0, 1, 1, 1, 0,
       0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 0,
@@ -208,33 +208,21 @@ const generatePopulateMaps = () => {
 
 export const initialPopulatedMaps = generatePopulateMaps();
 
-export const handleMovement = (keyCode, map, size) => {
+const checkDirection = function(keyCode) {
   const currentPosition = map.indexOf(8);
   const leftSpace = map[currentPosition - 1];
   const rightSpace = map[currentPosition + 1];
+  updatedMap[currentPosition - 1] = 8;
+  updatedMap[currentPosition] = 1;
+  return
+}
+
+export const handleMovement = (keyCode, map, size) => {
+  const nextMove = checkDirection(keyCode, map, size);
   const updatedMap = [...map];
   let updatedVisibleMap;
-  switch (keyCode) {
-    case 37:
-      if (leftSpace === 1 || leftSpace === 2 || leftSpace === 3) {
-        updatedMap[currentPosition - 1] = 8;
-        updatedMap[currentPosition] = 1;
-      }
-      updatedVisibleMap = generateVisibleMap(updatedMap, updatedMap.indexOf(8), size);
-      return [updatedMap, updatedMap.indexOf(8), updatedVisibleMap];
-    case 38:
-      // console.log('up');
-      break;
-    case 40:
-      // console.log('down');
-      break;
-    case 39:
-      if (rightSpace === 1 || rightSpace === 2 || rightSpace === 3) {
-        updatedMap[currentPosition + 1] = 8;
-        updatedMap[currentPosition] = 1;
-      }
-      updatedVisibleMap = generateVisibleMap(updatedMap, updatedMap.indexOf(8), size);
-      return [updatedMap, updatedMap.indexOf(8), updatedVisibleMap];
-    default:
+  if (nextMove) {
+    updatedVisibleMap = generateVisibleMap(updatedMap, updatedMap.indexOf(8), size);
+    return [updatedMap, updatedMap.indexOf(8), updatedVisibleMap];
   }
 };

@@ -35,18 +35,20 @@ function updateObject(oldObject, newValues) {
 }
 
 function playerMovement(state, action) {
-  const updatedMap = helpers.handleMovement(action.event, state.layerMap, state.layerSize);
-  return updateObject(state, {
-    layerMap: updatedMap[0],
-    characterPosition: updatedMap[1],
-    characterVisibleMap: updatedMap[2],
-  });
+  if ([37, 38, 39, 40].indexOf(action.event) > -1) {
+    const updatedMap = helpers.handleMovement(action.event, state.layerMap, state.layerSize);
+    return updateObject(state, {
+      layerMap: updatedMap[0],
+      characterPosition: updatedMap[1],
+      characterVisibleMap: updatedMap[2],
+    });
+  }
+  return state;
 }
 
 function gameBoardReducer(state = initialState, action) {
   switch (action.type) {
     case PLAYER_MOVEMENT: {
-      // console.log(playerMovement(state, action));
       return playerMovement(state, action);
     }
     default:

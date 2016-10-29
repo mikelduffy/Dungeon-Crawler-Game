@@ -10,6 +10,10 @@ class GameBoard extends Component {
     document.addEventListener('keydown', this.onInputKeydown, false);
   }
 
+  componentDidUpdate(nextProps, nextState) {
+    this.drawVisibleMap();
+  }
+
   onInputKeydown = (event) => {
     const keyCode = event.keyCode;
     this.props.keyPress(keyCode);
@@ -50,9 +54,6 @@ class GameBoard extends Component {
         counter += 1;
       }
     }
-  }
-  componentDidUpdate(prevProps, prevState) {
-    this.drawVisibleMap();
   }
 
   render() {
